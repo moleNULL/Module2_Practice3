@@ -1,10 +1,8 @@
-﻿using TaxiCompany.Enums;
-
-namespace TaxiCompany.Vehicles.Cars
+﻿namespace TaxiCompany.Vehicles.Cars
 {
     internal class DieselCar : Car
     {
-        // defined dynamically
+        // defined dynamically depending on the current season
         private DieselType _dieselType;
         public DieselCar(string brand, string model, string country, double dieselConsumption, decimal carPrice, int year)
         {
@@ -34,13 +32,13 @@ namespace TaxiCompany.Vehicles.Cars
         {
             return $"Brand: {Brand} | Model: {Model} | Country: {Country} | FuelType: {FuelType} " +
                 $"({_dieselType} = {FuelPrice} UAH) | FuelConsumption: {FuelConsumption} litres per 100 km | " +
-                $"Price: {Price} | Year: {Year}";
+                $"Price: ${Price} | Year: {Year}";
         }
 
-        // get current type of diesel fuel depending on the season
+        // Get current type of diesel fuel depending on the season
         private DieselType GetDieselType()
         {
-            // numbers represents months
+            // numbers represent months
             switch (DateTime.Now.Month)
             {
                 case 11:

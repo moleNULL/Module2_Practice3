@@ -9,6 +9,7 @@ global using TaxiCompany.Vehicles.Cars.DieselCars;
 global using TaxiCompany.Vehicles.Cars.GasCars;
 global using TaxiCompany.Vehicles.Cars.PetrolCars;
 global using TaxiCompany.Enums;
+global using TaxiCompany.Sorters;
 
 namespace TaxiCompany
 {
@@ -23,6 +24,7 @@ namespace TaxiCompany
             _cars = Array.Empty<Car>();
         }
 
+        // Allows user to change output method any time
         public IPrinter Printer
         {
             get => _printer;
@@ -39,16 +41,17 @@ namespace TaxiCompany
             }
         }
 
-        // to use easily either List<Car> or Car[]
-        public IEnumerable<Car> Cars => _cars;
+        // Allows user to get Car[] but not modify it directly
+        public Car[] Cars => _cars;
 
-        public void FillStationWithDefaultCars()
+        // Fill taxi station with initial cars
+        public void FillStationWithInitialCars()
         {
             // Cars on petrol
             var hondaOnPetrol = new HondaOnPetrol(model: "Civic 1.5", PetrolType.AI92, petrolConsumption: 8.7, carPrice: 11500, year: 2017);
             var honda = new Honda(hondaOnPetrol);
             var fiat = new Fiat(new FiatOnPetrol(model: "Tipo 1.4 МТ", PetrolType.AI95, petrolConsumption: 5.7, carPrice: 17000, year: 2022));
-            var nissan1 = new Nissan(new NissanOnPetrol(model: "Juke 1.0 DIG-T", PetrolType.AI98, petrolConsumption: 4.8, carPrice: 24200, year: 2021));
+            var nissan1 = new Nissan(new NissanOnPetrol(model: "Juke 1.0 DIG-T", PetrolType.AI98, petrolConsumption: 4.8, carPrice: 24200, year: 2022));
 
             // Cars on diesel
             var bmw = new BMW(new BmwOnDiesel(model: "X5", dieselConsumption: 13, carPrice: 35500, year: 2016));
@@ -64,11 +67,46 @@ namespace TaxiCompany
             _cars = new Car[] { honda, fiat, nissan1, nissan2, bmw, renault, suzuki, opel, kia, hyundai };
         }
 
+        // Append new cars to already existed ones
         public void AddCars(Car[] newCars)
         {
             _cars = TaxiStationResizer.AddAnimals(_cars, newCars);
         }
 
+        // Get total price of all cars in the taxi station
+        public decimal GetTotalPrice()
+        {
+            decimal sum = 0;
+
+            foreach (Car car in _cars)
+            {
+                sum += car.Price;
+            }
+
+            return sum;
+        }
+
+        public void SortByCountry()
+        {
+            new CountrySorter().Sort(ref _cars);
+        }
+
+        public void SortByFuelConsumption()
+        {
+            new FuelConsumptionSorter().Sort(ref _cars);
+        }
+
+        public void SortByCarPrice()
+        {
+            new CarPriceSorter().Sort(ref _cars);
+        }
+
+        public void SortByYear()
+        {
+            new YearSorter().Sort(ref _cars);
+        }
+
+        // Print all cars in the taxi station
         public void PrintCars()
         {
             int i = 1;

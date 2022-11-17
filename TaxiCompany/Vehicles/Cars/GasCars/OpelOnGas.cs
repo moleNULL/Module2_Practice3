@@ -1,6 +1,4 @@
-﻿using TaxiCompany.Enums;
-
-namespace TaxiCompany.Vehicles.Cars.GasCars
+﻿namespace TaxiCompany.Vehicles.Cars.GasCars
 {
     internal class OpelOnGas : GasCar
     {

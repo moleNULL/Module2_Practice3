@@ -1,6 +1,4 @@
-﻿using TaxiCompany.Enums;
-
-namespace TaxiCompany.Vehicles.Cars
+﻿namespace TaxiCompany.Vehicles.Cars
 {
     internal class GasCar : Car
     {
@@ -40,10 +38,10 @@ namespace TaxiCompany.Vehicles.Cars
         {
             return $"Brand: {Brand} | Model: {Model} | Country: {Country} | FuelType: {FuelType} " +
                 $"({_gasType} = {FuelPrice} UAH) | FuelConsumption: {FuelConsumption} litres (m^3) per 100 km | " +
-                $"Price: {Price} | Year: {Year}";
+                $"Price: ${Price} | Year: {Year}";
         }
 
-        // Set default price on gas fuel
+        // Set default price on gas fuel depending on its type
         private decimal GetGasPrice()
         {
             switch (_gasType)

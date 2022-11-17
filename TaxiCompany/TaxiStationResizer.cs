@@ -1,9 +1,9 @@
 ﻿namespace TaxiCompany
 {
-    // class that provide logic to Add/Remove cars
+    // Class that provides logic to Add/Remove cars
     internal class TaxiStationResizer
     {
-        // add new cars to already existed ones
+        // Add new cars to already existed ones
         public static Car[] AddAnimals(Car[] oldCars, Car[] newCars)
         {
             int oldCarLength = oldCars.Length;

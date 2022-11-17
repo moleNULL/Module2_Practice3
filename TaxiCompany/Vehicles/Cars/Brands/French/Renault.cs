@@ -1,7 +1,6 @@
-﻿using TaxiCompany.Enums;
-
-namespace TaxiCompany.Vehicles.Cars.Brands.French
+﻿namespace TaxiCompany.Vehicles.Cars.Brands.French
 {
+    // Concrete car brand that may consume any type of fuel
     internal class Renault : Car
     {
         private const string CARBRAND = "Renault";
